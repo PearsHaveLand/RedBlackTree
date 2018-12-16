@@ -26,9 +26,9 @@ rb_node* rb_node::get_left(){
 rb_node* rb_node::get_right(){
 	return m_right;
 }
-bool rb_node::set_left(rb_node *node){
+void rb_node::set_left(rb_node *node){
 	m_left = node;
 }
-bool rb_node::set_right(rb_node *node){
+void rb_node::set_right(rb_node *node){
 	m_right = node;
 }

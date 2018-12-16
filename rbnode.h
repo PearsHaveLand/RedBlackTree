@@ -1,6 +1,9 @@
 #ifndef RBNODE
 #define RBNODE
 
+#include <iostream>
+using namespace std;
+
 class rb_node{
 public:
 	rb_node(int val);
@@ -10,8 +13,8 @@ public:
 	unsigned long get_bheight();
 	rb_node* get_left();
 	rb_node* get_right();
-	bool set_left(rb_node *node);
-	bool set_right(rb_node *node);
+	void set_left(rb_node *node);
+	void set_right(rb_node *node);
 private:
 	int m_val;
 	unsigned long m_bheight;
