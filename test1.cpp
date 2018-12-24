@@ -11,6 +11,10 @@ int main(){
 	mytree.push(1);
 	mytree.push(4);
 	mytree.push(5);
+
+	if(mytree.push(5)){
+		cout << "that shouldn't have worked\n";
+	}
 	mytree.preorder();
 	return 0;
 }

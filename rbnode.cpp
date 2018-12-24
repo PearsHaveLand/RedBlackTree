@@ -35,8 +35,10 @@ rb_node* rb_node::get_right(){
 
 void rb_node::set_left(rb_node *node){
 	m_left = node;
+	node->m_parent = this;
 }
 
 void rb_node::set_right(rb_node *node){
 	m_right = node;
+	node->m_parent = this;
 }
