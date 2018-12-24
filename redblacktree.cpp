@@ -47,7 +47,7 @@ bool rb_tree::find(int val){ return find(val, m_root); }
 
 bool rb_tree::preorder(){
 	bool exists = (init_vals()) ? true : false;
-	if(exists){
+	if(exists && m_root){
 		preorder(m_root, 1);
 		print_vals();
 	}
@@ -134,14 +134,17 @@ bool rb_tree::pop(int val, rb_node *root){return false;}
 bool rb_tree::find(int val, rb_node *root){return false;}
 
 void rb_tree::preorder(rb_node *root, unsigned long index){
-	if(root){
-			m_vals[index] = root->get_val();
-			preorder(root->get_left(), index*2);
-			preorder(root->get_right(), (index*2)+1);
+	m_vals[index] = root->get_val();
+	cout << "index*2 = " << index*2 << endl;
+	if(root->get_left())
+		preorder(root->get_left(), index*2);
+	else if (m_vals_size > index*2){
+		m_vals[index*2] = -1;
 	}
-	else{
-			m_vals[index] = -1;
-	}
+	if(root->get_right())
+		preorder(root->get_right(), (index*2) + 1);
+	else if (m_vals_size > (index*2) + 1)
+		m_vals[(index*2) + 1] = -1;
 }
 
 int rb_tree::get_min(rb_node *root){return 0;}
@@ -164,12 +167,16 @@ void rb_tree::clear_vals(){
 
 bool rb_tree::init_vals(){
 	bool exists;
-	cout << "height: " << m_height << endl;
-	cout << m_root << endl;
-	m_vals_size = pow(m_height);
+	//cout << "height: " << m_height << endl;
+	//cout << m_root << endl;
+	clear_vals();
+	m_vals_size = pow(m_height) + 1;
 	cout << "arr_size = " << m_vals_size << endl;
 	m_vals = new int[m_vals_size];
 	exists = (m_vals) ? true : false;
+	for(unsigned long i = 0; i < m_vals_size; i++){
+		m_vals[i] = -1;
+	}
 	return exists;
 }
 
