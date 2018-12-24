@@ -10,8 +10,8 @@ rbnode.o: rbnode.h rbnode.cpp
 redblacktree.o: redblacktree.h redblacktree.cpp pow.o rbnode.o
 	$(GXX) $(GXXFLAGS) redblacktree.cpp -c
 
-test1: test1.cpp redblacktree.o rbnode.o pow.o
-	$(GXX) $(GXXFLAGS) rbnode.o pow.o redblacktree.o test1.cpp -o test1
+run1: test1.cpp redblacktree.o rbnode.o pow.o
+	$(GXX) $(GXXFLAGS) rbnode.o pow.o redblacktree.o test1.cpp -o run1
 
 clean:
-	rm *.o
+	rm *.o run*

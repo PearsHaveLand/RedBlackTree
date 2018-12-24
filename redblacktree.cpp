@@ -135,7 +135,6 @@ bool rb_tree::find(int val, rb_node *root){return false;}
 
 void rb_tree::preorder(rb_node *root, unsigned long index){
 	m_vals[index] = root->get_val();
-	cout << "index*2 = " << index*2 << endl;
 	if(root->get_left())
 		preorder(root->get_left(), index*2);
 	else if (m_vals_size > index*2){
@@ -167,11 +166,8 @@ void rb_tree::clear_vals(){
 
 bool rb_tree::init_vals(){
 	bool exists;
-	//cout << "height: " << m_height << endl;
-	//cout << m_root << endl;
 	clear_vals();
-	m_vals_size = pow(m_height) + 1;
-	cout << "arr_size = " << m_vals_size << endl;
+	m_vals_size = pow(m_height);
 	m_vals = new int[m_vals_size];
 	exists = (m_vals) ? true : false;
 	for(unsigned long i = 0; i < m_vals_size; i++){
@@ -181,8 +177,18 @@ bool rb_tree::init_vals(){
 }
 
 void rb_tree::print_vals(){
+	unsigned long row_size = 1, curr_row_size = 0;
 	for(unsigned long i = 1; i < m_vals_size; i++){
-		cout << m_vals[i] << ' ';
+		if(m_vals[i] != -1)
+			cout << m_vals[i] << ' ';
+		else
+			cout << "_ ";
+		curr_row_size++;
+		if(curr_row_size == row_size){
+			cout << endl;
+			row_size *= 2;
+			curr_row_size = 0;
+		}
 	}
 	cout << endl;
 }
