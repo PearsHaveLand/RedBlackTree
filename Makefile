@@ -15,3 +15,5 @@ run1: test1.cpp redblacktree.o rbnode.o pow.o
 
 clean:
 	rm *.o run*
+
+	I am stinky
